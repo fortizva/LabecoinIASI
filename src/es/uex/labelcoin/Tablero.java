@@ -50,7 +50,8 @@ public class Tablero {
 									robot = new Coordenada(i, j);
 								} else {
 									error = true;
-									System.out.println("Error cargando ["+i+", "+j+"] en tablero: Solo debe haber un robot.");
+									System.out.println("Error cargando [" + i + ", " + j
+											+ "] en tablero: Solo debe haber un robot.");
 								}
 								break;
 							case Constantes.SALIDA:
@@ -60,7 +61,8 @@ public class Tablero {
 
 								} else {
 									error = true;
-									System.out.println("Error cargando ["+i+", "+j+"] en tablero: Solo debe haber una salida.");
+									System.out.println("Error cargando [" + i + ", " + j
+											+ "] en tablero: Solo debe haber una salida.");
 								}
 								break;
 							default:
@@ -71,8 +73,8 @@ public class Tablero {
 									}
 								} else {
 									error = true;
-									System.out.println(
-											"Error cargando ["+i+", "+j+"] en tablero: Valor \"" + currentValue + "\" desconocido.");
+									System.out.println("Error cargando [" + i + ", " + j + "] en tablero: Valor \""
+											+ currentValue + "\" desconocido.");
 								}
 								break;
 							}

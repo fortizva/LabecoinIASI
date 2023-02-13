@@ -4,12 +4,9 @@ public class Coordenada {
 
 	private int x, y;
 
-	// Almacenar dos valores y poder sacarlos con el get
-
 	public Coordenada(int x, int y) {
 		this.x = x;
 		this.y = y;
-
 	}
 
 	public int getX() {
@@ -26,5 +23,10 @@ public class Coordenada {
 
 	public void setY(int b) {
 		y = b;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + x + ", " + y + "]";
 	}
 }
