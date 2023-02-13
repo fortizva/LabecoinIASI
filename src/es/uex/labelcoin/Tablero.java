@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+import es.uex.labelcoin.util.Constantes;
+
 public class Tablero {
 	/*
 	 * Empleamos dos variables para el tamaño del tablero para poder cargar mapas no
@@ -17,16 +19,6 @@ public class Tablero {
 	public Coordenada robot, salida;
 	private int[][] tablero;
 	private HashMap<Coordenada, Integer> monedas;
-
-	enum ElementoTablero {
-		CELDA_VACIA(0), MONEDAS(6), SALIDA(7), ROBOT(8), MURO(9);
-
-		public final int value;
-
-		private ElementoTablero(int value) {
-			this.value = value;
-		}
-	};
 
 	public Tablero() {
 		tablero = new int[MAX_HEIGHT][MAX_WIDTH];
@@ -52,36 +44,35 @@ public class Tablero {
 					for (int j = 0; j < MAX_WIDTH; j++) {
 						if (!error) {
 							switch (Integer.parseInt(values[j])) {
-							case ElementoTablero.ROBOT.value:
+							case Constantes.ROBOT:
 								if (!robot_b) {
 									robot_b = true;
 									robot = new Coordenada(i, j);
 								} else {
 									error = true;
-									System.out.println("Error cargando tablero: Solo debe haber un robot.");
+									System.out.println("Error cargando ["+i+", "+j+"] en tablero: Solo debe haber un robot.");
 								}
 								break;
-							case ElementoTablero.SALIDA.value:
+							case Constantes.SALIDA:
 								if (!salida_b) {
 									salida_b = true;
 									salida = new Coordenada(i, j);
 
 								} else {
 									error = true;
-									System.out.println("Error cargando tablero: Solo debe haber una salida.");
+									System.out.println("Error cargando ["+i+", "+j+"] en tablero: Solo debe haber una salida.");
 								}
 								break;
 							default:
 								int currentValue = Integer.parseInt(values[j]);
-								if (currentValue > ElementoTablero.CELDA_VACIA.value
-										&& currentValue < ElementoTablero.MURO.value) {
-									if (currentValue >= 1 && currentValue <= ElementoTablero.MONEDAS.value) {
+								if (currentValue >= Constantes.CELDA_VACIA && currentValue <= Constantes.MURO) {
+									if (currentValue >= 1 && currentValue <= Constantes.MONEDAS) {
 										monedas.put(new Coordenada(i, j), currentValue);
 									}
 								} else {
 									error = true;
 									System.out.println(
-											"Error cargando tablero: Valor \"" + currentValue + "\" desconocido.");
+											"Error cargando ["+i+", "+j+"] en tablero: Valor \"" + currentValue + "\" desconocido.");
 								}
 								break;
 							}
