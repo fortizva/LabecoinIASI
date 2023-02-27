@@ -15,10 +15,10 @@ public class Tablero {
 	 */
 	public final int MAX_WIDTH = 10;
 	public final int MAX_HEIGHT = 10;
-	public int price;
+	public int price, wallet = 0;
 	public Coordenada robot, salida;
 	private int[][] tablero;
-	private HashMap<Coordenada, Integer> monedas;
+	public HashMap<Coordenada, Integer> monedas;
 
 	public Tablero() {
 		tablero = new int[MAX_HEIGHT][MAX_WIDTH];
@@ -107,5 +107,9 @@ public class Tablero {
 
 	public int getPrecio() {
 		return price;
+	}
+	
+	public int getCartera() {
+		return wallet;
 	}
 }
