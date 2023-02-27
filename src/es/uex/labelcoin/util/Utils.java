@@ -11,9 +11,40 @@ public class Utils {
 
 		return Math.abs(Math.sqrt(x + y));
 	}
-	
+
 	public static Coordenada calcularCoordenada(Coordenada s, Tablero.Movimiento m) {
-		
-		return new Coordenada(0,0);
+		Coordenada target;
+
+		switch (m) {
+		case Arriba:
+			target = new Coordenada(s.getX(), s.getY() - 1);
+			break;
+		case Abajo:
+			target = new Coordenada(s.getX(), s.getY() + 1);
+			break;
+		case Izquierda:
+			target = new Coordenada(s.getX() - 1, s.getY());
+			break;
+		case Derecha:
+			target = new Coordenada(s.getX() + 1, s.getY());
+			break;
+		case AbajoIzquierda:
+			target = new Coordenada(s.getX() - 1, s.getY() + 1);
+			break;
+		case ArribaIzquierda:
+			target = new Coordenada(s.getX() - 1, s.getY() - 1);
+			break;
+		case AbajoDerecha:
+			target = new Coordenada(s.getX() + 1, s.getY() + 1);
+			break;
+		case ArribaDerecha:
+			target = new Coordenada(s.getX() + 1, s.getY() - 1);
+			break;
+		default:
+			target = new Coordenada(-1, -1);
+			break;
+		}
+
+		return target;
 	}
 }

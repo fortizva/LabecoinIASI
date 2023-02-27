@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import es.uex.labelcoin.util.Constantes;
+import es.uex.labelcoin.util.Utils;
 
 public class Tablero {
 	/*
@@ -19,6 +20,10 @@ public class Tablero {
 	public Coordenada robot, salida;
 	private int[][] tablero;
 	public HashMap<Coordenada, Integer> monedas;
+
+	public enum Movimiento {
+		Arriba, Abajo, Izquierda, Derecha, ArribaIzquierda, AbajoIzquierda, ArribaDerecha, AbajoDerecha
+	};
 
 	public Tablero() {
 		tablero = new int[MAX_HEIGHT][MAX_WIDTH];
@@ -108,8 +113,37 @@ public class Tablero {
 	public int getPrecio() {
 		return price;
 	}
-	
+
 	public int getCartera() {
 		return wallet;
 	}
+
+	public boolean moverRobot(Movimiento mov) {
+
+		Coordenada prueba;
+
+		// Calculamos la coordenada objetivo
+		prueba = Utils.calcularCoordenada(robot, mov);
+		
+		switch (tablero[prueba.getY()][prueba.getX()]) {
+		case Constantes.MURO:
+			return false;
+		case Constantes.SALIDA:
+
+		case Constantes.CELDA_VACIA:
+			tablero[prueba.getY()][prueba.getX()] = Constantes.ROBOT;
+			tablero[robot.getY()][robot.getX()] = Constantes.CELDA_VACIA;
+			robot = prueba;
+			return true;
+		default:
+			wallet = wallet + tablero[prueba.getY()][prueba.getX()];
+			tablero[prueba.getY()][prueba.getX()] = Constantes.ROBOT;
+			tablero[robot.getY()][robot.getX()] = Constantes.CELDA_VACIA;
+			monedas.remove(prueba);
+			robot = prueba;
+			return true;
+		}
+
+	}
+
 }

@@ -8,8 +8,8 @@ import es.uex.labelcoin.util.Utils;
 
 public class MaximaPendiente {
 
-	public ArrayList<Tablero.Movimientos> camino = new ArrayList<>();
-	
+	public ArrayList<Tablero.Movimiento> camino = new ArrayList<>();
+
 	public static void main(String[] args) {
 		// TODO Implementar Máxima pendiente
 		System.out.println("Labelcoin: Máxima pendiente");
@@ -29,16 +29,17 @@ public class MaximaPendiente {
 	public static boolean maximaPendiente(Tablero t) {
 		boolean success = false, end = false;
 		Tablero.Movimiento mov;
-		Coordenada objetivo;
+		Coordenada objetivo = new Coordenada(-1, -1);
 		double dist = -1; // Empleamos la distancia al objetivo como h'
 		// Seleccionamos el primer objetivo
 		if (t.getPrecio() > t.getCartera()) {
 			double tmp;
 			for (int i = 0; i < t.monedas.size(); i++) {
 				tmp = Utils.getDistancia(t.robot, (Coordenada) t.monedas.keySet().toArray()[i]);
-				if (dist == -1 || tmp < dist || (tmp == dist && t.monedas.get((Coordenada) t.monedas.keySet().toArray()[i]) > t.monedas.get(objetivo))) {
-						dist = tmp;
-						objetivo = (Coordenada) t.monedas.keySet().toArray()[i];
+				// TODO: Elegir la moneda de más valor a misma distancia.
+				if (dist == -1 || tmp <= dist) {
+					dist = tmp;
+					objetivo = (Coordenada) t.monedas.keySet().toArray()[i];
 				}
 			}
 		} else {
@@ -47,21 +48,22 @@ public class MaximaPendiente {
 		}
 		// Obtenemos las h' disponibles y escogemos la mejor
 		Coordenada c, tmp;
-		Tablero.Movimiento mov;
 		while (!end) {
 			end = true;
+			c = Utils.calcularCoordenada(t.robot, Tablero.Movimiento.Abajo);
 			for (Tablero.Movimiento currentMov : Tablero.Movimiento.values()) {
 				tmp = Utils.calcularCoordenada(t.robot, currentMov);
-				if(Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)) {
+				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)) {// TODO: Verificar que el movimiento es válido
 					c = tmp;
 					mov = currentMov;
 					end = false;
 				}
 			}
-			if(!end) {
+			if (!end) {
 				// Mover robot
 			}
 		}
 
-	return success;
-}}
+		return success;
+	}
+}
