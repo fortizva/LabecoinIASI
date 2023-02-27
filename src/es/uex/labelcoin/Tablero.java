@@ -15,10 +15,21 @@ public class Tablero {
 	 */
 	public final int MAX_WIDTH = 10;
 	public final int MAX_HEIGHT = 10;
-	public int price;
+	public int price,wallet=0;
 	public Coordenada robot, salida;
 	private int[][] tablero;
 	private HashMap<Coordenada, Integer> monedas;
+	enum Movimiento {
+	    Arriba,
+	    Abajo,
+	    Izquierda,
+	    Derecha,
+	    ArribaIzquierda,
+	    AbajoIzquierda,
+	    ArribaDerecha,
+	    AbajoDerecha
+	  };
+	
 
 	public Tablero() {
 		tablero = new int[MAX_HEIGHT][MAX_WIDTH];
@@ -108,4 +119,58 @@ public class Tablero {
 	public int getPrecio() {
 		return price;
 	}
+	
+	public boolean moverRobot(Movimiento mov) {
+
+	    Coordenada prueba= new Coordenada(0,0);
+
+	    switch(mov) {
+	      case Arriba:
+	        prueba= new Coordenada (robot.getX(),robot.getY()-1);	      
+	        break;
+	      case Abajo:
+	        prueba= new Coordenada (robot.getX(),robot.getY()+1);	
+	        break;
+	      case Izquierda:
+	        prueba= new Coordenada (robot.getX()-1,robot.getY());	
+	        break;
+	      case Derecha:
+	        prueba= new Coordenada (robot.getX()+1,robot.getY());	
+		    break;
+		  case AbajoIzquierda:
+		    prueba= new Coordenada (robot.getX()-1,robot.getY()+1);	
+		    break;
+		  case ArribaIzquierda:
+			prueba= new Coordenada (robot.getX()-1,robot.getY()-1);	
+		    break;
+		  case AbajoDerecha:
+			prueba= new Coordenada (robot.getX()+1,robot.getY()+1);	
+			break;
+	      case ArribaDerecha:
+	    	prueba= new Coordenada (robot.getX()+1,robot.getY()-1);	
+			break;
+	    }
+	    
+	    switch(tablero[prueba.getY()][prueba.getX()]) {
+	    case Constantes.MURO:
+	    	return false;
+	    case Constantes.SALIDA:
+	    	
+	    case Constantes.CELDA_VACIA:
+	    	tablero[prueba.getY()][prueba.getX()]=Constantes.ROBOT;
+	    	tablero[robot.getY()][robot.getX()]=Constantes.CELDA_VACIA;
+	    	robot=prueba;
+	    	return true;
+	    default:
+	    	wallet=wallet+tablero[prueba.getY()][prueba.getX()];
+	    	tablero[prueba.getY()][prueba.getX()]=Constantes.ROBOT;
+	    	tablero[robot.getY()][robot.getX()]=Constantes.CELDA_VACIA;
+	    	monedas.remove(prueba);
+	    	robot=prueba;
+	    	return true;
+	    }
+	    
+	    
+	  }
+	
 }
