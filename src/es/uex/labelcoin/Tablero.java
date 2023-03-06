@@ -145,5 +145,13 @@ public class Tablero {
 		}
 
 	}
+	public boolean comprobarMovimiento(Movimiento mov) {
+		Coordenada comprobacion=Utils.calcularCoordenada(salida, mov);
+		if(tablero[comprobacion.getY()][comprobacion.getX()]==Constantes.MURO)
+		  return false;
+		
+		else 
+		return true;
+	}
 
 }
