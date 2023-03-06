@@ -29,4 +29,9 @@ public class Coordenada {
 	public String toString() {
 		return "[" + x + ", " + y + "]";
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		return (((Coordenada) o).getX() == this.getX() & ((Coordenada) o).getY() == this.getY());
+	}
 }

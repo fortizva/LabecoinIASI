@@ -52,21 +52,21 @@ public class Tablero {
 							case Constantes.ROBOT:
 								if (!robot_b) {
 									robot_b = true;
-									robot = new Coordenada(i, j);
+									robot = new Coordenada(j, i);
 								} else {
 									error = true;
-									System.out.println("Error cargando [" + i + ", " + j
+									System.out.println("Error cargando [" + j + ", " + i
 											+ "] en tablero: Solo debe haber un robot.");
 								}
 								break;
 							case Constantes.SALIDA:
 								if (!salida_b) {
 									salida_b = true;
-									salida = new Coordenada(i, j);
+									salida = new Coordenada(j, i);
 
 								} else {
 									error = true;
-									System.out.println("Error cargando [" + i + ", " + j
+									System.out.println("Error cargando [" + j + ", " + i
 											+ "] en tablero: Solo debe haber una salida.");
 								}
 								break;
@@ -74,11 +74,11 @@ public class Tablero {
 								int currentValue = Integer.parseInt(values[j]);
 								if (currentValue >= Constantes.CELDA_VACIA && currentValue <= Constantes.MURO) {
 									if (currentValue >= 1 && currentValue <= Constantes.MONEDAS) {
-										monedas.put(new Coordenada(i, j), currentValue);
+										monedas.put(new Coordenada(j, i), currentValue);
 									}
 								} else {
 									error = true;
-									System.out.println("Error cargando [" + i + ", " + j + "] en tablero: Valor \""
+									System.out.println("Error cargando [" + j + ", " + i + "] en tablero: Valor \""
 											+ currentValue + "\" desconocido.");
 								}
 								break;
@@ -124,7 +124,7 @@ public class Tablero {
 
 		// Calculamos la coordenada objetivo
 		prueba = Utils.calcularCoordenada(robot, mov);
-		
+
 		switch (tablero[prueba.getY()][prueba.getX()]) {
 		case Constantes.MURO:
 			return false;

@@ -1,7 +1,10 @@
 package es.uex.labelcoin.util;
 
+import java.util.ArrayList;
+
 import es.uex.labelcoin.Coordenada;
 import es.uex.labelcoin.Tablero;
+import es.uex.labelcoin.Tablero.Movimiento;
 
 public class Utils {
 
@@ -46,5 +49,11 @@ public class Utils {
 		}
 
 		return target;
+	}
+
+	public static void printCamino(ArrayList<Movimiento> camino) {
+		for(Movimiento mov : camino) {
+			System.out.print(mov+": ");
+		}
 	}
 }
