@@ -24,12 +24,14 @@ public class MaximaPendiente {
 		} else
 			System.exit(1);
 
-		maximaPendiente(t);
+		boolean success = maximaPendiente(t);
+		System.out.println();
+		Utils.printCamino(camino, success);
 	}
 
 	public static boolean maximaPendiente(Tablero t) {
 		boolean success = false, end = false;
-		Tablero.Movimiento mov = null;
+		Tablero.Movimiento mov = Tablero.Movimiento.Abajo;
 		Coordenada objetivo = new Coordenada(-1, -1);
 
 		// Seleccionamos el primer objetivo
@@ -42,8 +44,7 @@ public class MaximaPendiente {
 			c = t.robot;
 			for (Tablero.Movimiento currentMov : Tablero.Movimiento.values()) {
 				tmp = Utils.calcularCoordenada(t.robot, currentMov);
-				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)) {// TODO: Verificar que el
-																							// movimiento es válido
+				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo) && t.comprobarMovimiento(currentMov)) {
 					c = tmp;
 					mov = currentMov;
 					end = false;
@@ -63,9 +64,6 @@ public class MaximaPendiente {
 				}
 			}
 		}
-
-		Utils.printCamino(camino);
-
 		return success;
 	}
 

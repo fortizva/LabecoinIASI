@@ -51,9 +51,14 @@ public class Utils {
 		return target;
 	}
 
-	public static void printCamino(ArrayList<Movimiento> camino) {
+	public static void printCamino(ArrayList<Movimiento> camino, boolean success) {
+		System.out.print("Camino: ");
 		for(Movimiento mov : camino) {
 			System.out.print(mov+": ");
 		}
+		System.out.print("\nEl algoritmo ");
+		if(!success)
+			System.out.print("no ");
+		System.out.print("ha encontrado una solucion.");
 	}
 }
