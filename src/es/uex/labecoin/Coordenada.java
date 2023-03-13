@@ -1,4 +1,4 @@
-package es.uex.labelcoin;
+package es.uex.labecoin;
 
 public class Coordenada {
 

@@ -1,29 +1,18 @@
-package es.uex.labelcoin.algorithms;
+package es.uex.labecoin.algorithms;
 
 import java.util.ArrayList;
 
-import es.uex.labelcoin.Coordenada;
-import es.uex.labelcoin.Tablero;
-import es.uex.labelcoin.util.Utils;
+import es.uex.labecoin.Coordenada;
+import es.uex.labecoin.Tablero;
+import es.uex.labecoin.util.Utils;
 
 public class MaximaPendiente {
 
 	public static ArrayList<Tablero.Movimiento> camino = new ArrayList<>();
 
-	public static void main(String[] args) {
+	public static void launch(Tablero t) {
 		// TODO Implementar Máxima pendiente
-		System.out.println("Labelcoin: Máxima pendiente");
-		System.out.println(Utils.getDistancia(new Coordenada(4, 1), new Coordenada(3, 1)));
-		// Obtener fichero de argumento (si es que hay)
-		String path = (args.length == 1) ? args[0] : "res/LABECOIN1.txt";
-		// Carga del tablero
-		Tablero t = new Tablero();
-		if (t.leerFichero(path)) {
-			t.printTablero();
-			System.out.println("\nPrecio: " + t.getPrecio());
-		} else
-			System.exit(1);
-
+		System.out.println("Labecoin: Máxima pendiente");
 		boolean success = maximaPendiente(t);
 		System.out.println();
 		Utils.printCamino(camino, success);

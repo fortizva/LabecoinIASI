@@ -1,10 +1,10 @@
-package es.uex.labelcoin.util;
+package es.uex.labecoin.util;
 
 import java.util.ArrayList;
 
-import es.uex.labelcoin.Coordenada;
-import es.uex.labelcoin.Tablero;
-import es.uex.labelcoin.Tablero.Movimiento;
+import es.uex.labecoin.Coordenada;
+import es.uex.labecoin.Tablero;
+import es.uex.labecoin.Tablero.Movimiento;
 
 public class Utils {
 
