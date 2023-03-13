@@ -59,7 +59,8 @@ public class EscaladaSimple {
 						System.out.println("DEBUG: Nuevo objetivo = " + objetivo);
 					} else {// Caso de ser la salida
 						end = true;
-						success = true;
+						if (t.price <= t.wallet)
+							success = true;
 					}
 				}
 			}
