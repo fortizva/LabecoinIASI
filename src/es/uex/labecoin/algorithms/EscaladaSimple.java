@@ -57,8 +57,10 @@ public class EscaladaSimple {
 						t.monedas.remove(objetivo);
 						objetivo = seleccionarObjetivo(t);
 						System.out.println("DEBUG: Nuevo objetivo = " + objetivo);
-					} else // Caso de ser la salida
+					} else {// Caso de ser la salida
 						end = true;
+						success = true;
+					}
 				}
 			}
 		}

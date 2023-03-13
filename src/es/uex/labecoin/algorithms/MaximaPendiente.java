@@ -12,7 +12,7 @@ public class MaximaPendiente {
 
 	public static void launch(Tablero t) {
 		// TODO Implementar Máxima pendiente
-		System.out.println("Labecoin: Máxima pendiente");
+		System.out.println("Labecoin: Maxima pendiente");
 		boolean success = maximaPendiente(t);
 		System.out.println();
 		Utils.printCamino(camino, success);
@@ -33,7 +33,8 @@ public class MaximaPendiente {
 			c = t.robot;
 			for (Tablero.Movimiento currentMov : Tablero.Movimiento.values()) {
 				tmp = Utils.calcularCoordenada(t.robot, currentMov);
-				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo) && t.comprobarMovimiento(currentMov)) {
+				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
+						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;
 					mov = currentMov;
 					end = false;
@@ -47,9 +48,11 @@ public class MaximaPendiente {
 					if (t.monedas.containsKey(objetivo)) {
 						t.monedas.remove(objetivo);
 						objetivo = seleccionarObjetivo(t);
-						System.out.println("DEBUG: Nuevo objetivo = "+objetivo);
-					} else // Caso de ser la salida
+						System.out.println("DEBUG: Nuevo objetivo = " + objetivo);
+					} else {// Caso de ser la salida
 						end = true;
+						success = true;
+					}
 				}
 			}
 		}
