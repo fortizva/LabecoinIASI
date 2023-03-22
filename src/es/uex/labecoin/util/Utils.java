@@ -51,11 +51,12 @@ public class Utils {
 		return target;
 	}
 
-	public static void printCamino(ArrayList<Movimiento> camino, boolean success) {
+	public static void printCamino(ArrayList<Movimiento> camino, boolean success, Tablero t) {
 		System.out.print("Camino: ");
 		for(Movimiento mov : camino) {
 			System.out.print(mov+": ");
 		}
+		System.out.print("\nEl algoritmo a generado " +  t.nodos + " en total");
 		System.out.print("\nEl algoritmo ");
 		if(!success)
 			System.out.print("no ");

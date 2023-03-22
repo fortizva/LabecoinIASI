@@ -15,7 +15,7 @@ public class EscaladaSimpleEstocastico {
 
 		boolean success = escaladaSimpleEstocastico(t, mejora);
 		System.out.println();
-		Utils.printCamino(camino, success);
+		Utils.printCamino(camino, success,t);
 	}
 
 	public static boolean escaladaSimpleEstocastico(Tablero t, int mejora) {
@@ -37,6 +37,7 @@ public class EscaladaSimpleEstocastico {
 			while (!found && i < Tablero.Movimiento.values().length) {
 				currentMov = Tablero.Movimiento.values()[i];
 				tmp = Utils.calcularCoordenada(t.robot, currentMov);
+				t.nodos++;
 				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
 						&& (Utils.getDistancia(c, objetivo) - Utils.getDistancia(tmp, objetivo) >= mejora)
 						&& t.comprobarMovimiento(currentMov)) {

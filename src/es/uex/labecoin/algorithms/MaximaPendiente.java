@@ -15,7 +15,7 @@ public class MaximaPendiente {
 		System.out.println("Labecoin: Maxima pendiente");
 		boolean success = maximaPendiente(t);
 		System.out.println();
-		Utils.printCamino(camino, success);
+		Utils.printCamino(camino, success,t);
 	}
 
 	public static boolean maximaPendiente(Tablero t) {
@@ -33,6 +33,7 @@ public class MaximaPendiente {
 			c = t.robot;
 			for (Tablero.Movimiento currentMov : Tablero.Movimiento.values()) {
 				tmp = Utils.calcularCoordenada(t.robot, currentMov);
+				t.nodos++;
 				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
 						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;

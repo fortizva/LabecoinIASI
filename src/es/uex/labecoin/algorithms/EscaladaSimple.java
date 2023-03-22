@@ -16,7 +16,7 @@ public class EscaladaSimple {
 
 		boolean success = escaladaSimple(t);
 		System.out.println();
-		Utils.printCamino(camino, success);
+		Utils.printCamino(camino, success,t);
 	}
 
 	public static boolean escaladaSimple(Tablero t) {
@@ -38,6 +38,7 @@ public class EscaladaSimple {
 			while (!found && i < Tablero.Movimiento.values().length) {
 				currentMov = Tablero.Movimiento.values()[i];
 				tmp = Utils.calcularCoordenada(t.robot, currentMov);
+				t.nodos++;
 				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
 						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;
