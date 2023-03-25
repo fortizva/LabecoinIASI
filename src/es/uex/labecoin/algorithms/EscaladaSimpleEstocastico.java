@@ -10,7 +10,7 @@ public class EscaladaSimpleEstocastico {
 
 	public static ArrayList<Tablero.Movimiento> camino = new ArrayList<>();
 
-	public static void launch(Tablero t, int mejora) {
+	public static void launch(Tablero t, double mejora) {
 		System.out.println("Labecoin: Escalada simple estocastico");
 
 		boolean success = escaladaSimpleEstocastico(t, mejora);
@@ -18,7 +18,7 @@ public class EscaladaSimpleEstocastico {
 		Utils.printCamino(camino, success,t);
 	}
 
-	public static boolean escaladaSimpleEstocastico(Tablero t, int mejora) {
+	public static boolean escaladaSimpleEstocastico(Tablero t, double mejora) {
 		boolean success = false, end = false, found = false;
 		Tablero.Movimiento mov = Tablero.Movimiento.Abajo;
 		Coordenada objetivo = new Coordenada(-1, -1);

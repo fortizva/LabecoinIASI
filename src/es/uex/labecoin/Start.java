@@ -12,6 +12,7 @@ public class Start {
 	public final static String default_path = "res/LABECOIN1.txt";
 
 	public static void main(String[] args) {
+		long time;
 		// Menu selector
 		System.out.println("Labelcoin - IASI");
 		System.out.println("Fichero del tablero: [" + default_path + "]");
@@ -44,6 +45,7 @@ public class Start {
 					selection = -1;
 				}
 
+				time = System.nanoTime();
 				switch (selection) {
 				case 1:
 					valid = true;
@@ -56,11 +58,11 @@ public class Start {
 				case 3:
 					valid = true;
 					boolean validMejora = false;
-					int mejora = 1;
+					double mejora = 1.0;
 					while (!validMejora) {
 						System.out.println("Cantidad de mejora:");
 						try {
-							mejora = Integer.parseInt(sc.nextLine());
+							mejora = Double.parseDouble(sc.nextLine());
 
 							if (mejora >= 0)
 								validMejora = true;
@@ -71,7 +73,7 @@ public class Start {
 									"Seleccion invalida! La cantidad de mejora debe ser un número entero positivo:");
 						}
 					}
-
+					time = System.nanoTime();
 					EscaladaSimpleEstocastico.launch(t, mejora);
 					break;
 				default:
@@ -79,6 +81,9 @@ public class Start {
 					valid = false;
 					break;
 				}
+				time = System.nanoTime() - time;
+				System.out.println("Tiempo del proceso: " + time + "ns ("+ time/1000000l + "ms)");
+				
 			}
 		} else {
 			System.out.println("No se pudo cargar el fichero! Finalizando...");
