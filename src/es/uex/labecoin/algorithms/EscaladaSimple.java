@@ -21,7 +21,7 @@ public class EscaladaSimple {
 
 	public static boolean escaladaSimple(Tablero t) {
 		boolean success = false, end = false, found = false;
-		Tablero.Movimiento mov = Tablero.Movimiento.Abajo;
+		Tablero.Movimiento mov = Tablero.Movimiento.B;
 		Coordenada objetivo = new Coordenada(-1, -1);
 		int i = 0;
 		Tablero.Movimiento currentMov;

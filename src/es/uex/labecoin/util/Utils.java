@@ -19,28 +19,28 @@ public class Utils {
 		Coordenada target;
 
 		switch (m) {
-		case Arriba:
+		case A:
 			target = new Coordenada(s.getX(), s.getY() - 1);
 			break;
-		case Abajo:
+		case B:
 			target = new Coordenada(s.getX(), s.getY() + 1);
 			break;
-		case Izquierda:
+		case I:
 			target = new Coordenada(s.getX() - 1, s.getY());
 			break;
-		case Derecha:
+		case D:
 			target = new Coordenada(s.getX() + 1, s.getY());
 			break;
-		case AbajoIzquierda:
+		case BI:
 			target = new Coordenada(s.getX() - 1, s.getY() + 1);
 			break;
-		case ArribaIzquierda:
+		case AI:
 			target = new Coordenada(s.getX() - 1, s.getY() - 1);
 			break;
-		case AbajoDerecha:
+		case BD:
 			target = new Coordenada(s.getX() + 1, s.getY() + 1);
 			break;
-		case ArribaDerecha:
+		case AD:
 			target = new Coordenada(s.getX() + 1, s.getY() - 1);
 			break;
 		default:
@@ -54,7 +54,7 @@ public class Utils {
 	public static void printCamino(ArrayList<Movimiento> camino, boolean success, Tablero t) {
 		System.out.print("Camino: ");
 		for(Movimiento mov : camino) {
-			System.out.print(mov+": ");
+			System.out.print(mov+", ");
 		}
 		System.out.println("\n\nEl algoritmo ha generado " +  t.nodos + " nodos en total");
 		System.out.print("El algoritmo ");

@@ -20,7 +20,7 @@ public class MaximaPendiente {
 
 	public static boolean maximaPendiente(Tablero t) {
 		boolean success = false, end = false;
-		Tablero.Movimiento mov = Tablero.Movimiento.Abajo;
+		Tablero.Movimiento mov = Tablero.Movimiento.B;
 		Coordenada objetivo = new Coordenada(-1, -1);
 
 		// Seleccionamos el primer objetivo

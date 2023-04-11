@@ -22,7 +22,7 @@ public class Tablero {
 	public HashMap<Coordenada, Integer> monedas;
 
 	public enum Movimiento {
-		Arriba, Abajo, Izquierda, Derecha, ArribaIzquierda, AbajoIzquierda, ArribaDerecha, AbajoDerecha
+		A, B, I, D, AI, BI, AD, BD
 	};
 
 	public Tablero() {
