@@ -56,10 +56,10 @@ public class Utils {
 		for(Movimiento mov : camino) {
 			System.out.print(mov+": ");
 		}
-		System.out.print("\nEl algoritmo ha generado " +  t.nodos + " nodos en total");
-		System.out.print("\nEl algoritmo ");
+		System.out.println("\n\nEl algoritmo ha generado " +  t.nodos + " nodos en total");
+		System.out.print("El algoritmo ");
 		if(!success)
 			System.out.print("no ");
-		System.out.print("ha encontrado una solucion.");
+		System.out.println("ha encontrado una solucion.");
 	}
 }

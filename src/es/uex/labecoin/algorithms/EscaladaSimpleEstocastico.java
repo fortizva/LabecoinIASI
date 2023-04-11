@@ -26,7 +26,7 @@ public class EscaladaSimpleEstocastico {
 		Tablero.Movimiento currentMov;
 		// Seleccionamos el primer objetivo
 		objetivo = seleccionarObjetivo(t);
-		System.out.println("DEBUG: Primer objetivo = " + objetivo);
+		System.out.println("Primer objetivo = " + objetivo);
 		// Obtenemos las h' disponibles y escogemos la mejor
 		Coordenada c, tmp;
 		while (!end) {
@@ -57,7 +57,7 @@ public class EscaladaSimpleEstocastico {
 					if (t.monedas.containsKey(objetivo)) {
 						t.monedas.remove(objetivo);
 						objetivo = seleccionarObjetivo(t);
-						System.out.println("DEBUG: Nuevo objetivo = " + objetivo);
+						System.out.println("Nuevo objetivo = " + objetivo);
 					} else {// Caso de ser la salida
 						end = true;
 						if (t.price <= t.wallet)

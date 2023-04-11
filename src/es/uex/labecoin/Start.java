@@ -82,7 +82,7 @@ public class Start {
 					break;
 				}
 				time = System.nanoTime() - time;
-				System.out.println("Tiempo del proceso: " + time + "ns ("+ time/1000000l + "ms)");
+				System.out.println("\nTiempo del proceso: " + time + "ns ("+ time/1000000l + "ms)");
 				
 			}
 		} else {
