@@ -28,7 +28,7 @@ public class MaximaPendiente {
 		System.out.println("Primer objetivo = " + objetivo);
 		// Obtenemos las h' disponibles y escogemos la mejor
 		Coordenada c, tmp;
-		while (!end) {
+		while (!end && t.maxMoviminetos>0) {
 			end = true;
 			c = t.robot;
 			for (Tablero.Movimiento currentMov : Tablero.Movimiento.values()) {
@@ -38,6 +38,7 @@ public class MaximaPendiente {
 						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;
 					mov = currentMov;
+					t.maxMoviminetos--;
 					end = false;
 				}
 			}

@@ -1,6 +1,7 @@
 package es.uex.labecoin;
 
 import java.io.File;
+
 import java.util.Scanner;
 
 import es.uex.labecoin.algorithms.EscaladaSimple;
@@ -30,8 +31,30 @@ public class Start {
 		Tablero t = new Tablero();
 		boolean read = t.leerFichero(path);
 		if (read) {
-			System.out.println("\nAlgoritmo:");
 			boolean valid = false;
+			System.out.println("Seleccione el numero máximos e movimientos");
+			while(!valid) {
+			int selection;
+			try {
+				selection = Integer.parseInt(sc.nextLine());
+			} catch (NumberFormatException e) {
+				// Si hay un error al leer la opción introducida establecemos selection a -1
+				// para que salte el error
+				selection = 0;
+			}
+			
+			if(selection!=0) {
+				t.maxMoviminetos=selection;
+				valid=true;
+			    		 
+			}
+			else {
+				System.out.println("Seleccion invalida! Pruebe otro valor");
+			}
+			}
+			
+			System.out.println("\nAlgoritmo:");
+		    valid = false;
 			while (!valid) {
 				System.out.println("\t1)\tEscalada simple");
 				System.out.println("\t2)\tMaxima pendiente");

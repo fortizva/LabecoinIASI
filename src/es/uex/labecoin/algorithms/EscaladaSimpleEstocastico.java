@@ -29,7 +29,7 @@ public class EscaladaSimpleEstocastico {
 		System.out.println("Primer objetivo = " + objetivo);
 		// Obtenemos las h' disponibles y escogemos la mejor
 		Coordenada c, tmp;
-		while (!end) {
+		while (!end && t.maxMoviminetos>0) {
 			end = true;
 			c = t.robot;
 			found = false;
@@ -43,6 +43,7 @@ public class EscaladaSimpleEstocastico {
 						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;
 					mov = currentMov;
+					t.maxMoviminetos--;
 					end = false;
 					found = true;
 				}

@@ -16,7 +16,7 @@ public class Tablero {
 	 */
 	public final int MAX_WIDTH = 10;
 	public final int MAX_HEIGHT = 10;
-	public int price, wallet,nodos = 0;
+	public int price, wallet,nodos,maxMoviminetos = 0;
 	public Coordenada robot, salida;
 	private int[][] tablero;
 	public HashMap<Coordenada, Integer> monedas;

@@ -61,5 +61,8 @@ public class Utils {
 		if(!success)
 			System.out.print("no ");
 		System.out.println("ha encontrado una solucion.");
+		if(t.maxMoviminetos==0) {
+			System.out.println("Se ha alcanzado el numero máximo de movimientos");
+		}
 	}
 }
