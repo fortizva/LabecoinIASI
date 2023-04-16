@@ -38,11 +38,11 @@ public class MaximaPendiente {
 						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;
 					mov = currentMov;
-					t.maxMovimientos--;
 					end = false;
 				}
 			}
 			if (!end) {
+				t.maxMovimientos--;
 				// Mover robot
 				t.moverRobot(mov);
 				camino.add(mov);
