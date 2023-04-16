@@ -12,7 +12,7 @@ public class EscaladaSimple {
 
 	public static void launch(Tablero t) {
 		// TODO Implementar Escalada simple
-		System.out.println("Labecoin: Escalada simple");
+		System.out.println("Labecoin: Escalada simple\n");
 
 		boolean success = escaladaSimple(t);
 		System.out.println();

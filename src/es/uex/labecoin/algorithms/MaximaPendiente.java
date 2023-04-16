@@ -12,7 +12,7 @@ public class MaximaPendiente {
 
 	public static void launch(Tablero t) {
 		// TODO Implementar Máxima pendiente
-		System.out.println("Labecoin: Maxima pendiente");
+		System.out.println("Labecoin: Maxima pendiente\n");
 		boolean success = maximaPendiente(t);
 		System.out.println();
 		Utils.printCamino(camino, success,t);

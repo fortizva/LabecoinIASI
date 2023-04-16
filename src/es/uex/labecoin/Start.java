@@ -1,48 +1,65 @@
 package es.uex.labecoin;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import es.uex.labecoin.algorithms.EscaladaSimple;
 import es.uex.labecoin.algorithms.EscaladaSimpleEstocastico;
 import es.uex.labecoin.algorithms.MaximaPendiente;
+import es.uex.labecoin.util.Utils;
 
 public class Start {
 
 	public final static String default_path = "res/LABECOIN1.txt";
 
 	public static void main(String[] args) {
+		// Extraer argumentos de la consola
+		HashMap<String, String> map = Utils.argumentParser(args);
+
 		long time;
+
 		// Menu selector
-		System.out.println("Labelcoin - IASI");
-		System.out.println("Fichero del tablero: [" + default_path + "]");
+		System.out.println("Labecoin - IASI");
+		String path;
 		Scanner sc = new Scanner(System.in);
-		String path = sc.nextLine();
-		if (path == "")
-			path = default_path;
-		else {
-			File f = new File(path).getAbsoluteFile();
-			if (!f.exists() || f.isDirectory()) {
-				System.out.println("Fichero invalido! Cargando fichero por defecto.");
+
+		if (!map.containsKey("Fichero")) {
+			System.out.println("Fichero del tablero: [" + default_path + "]");
+			path = sc.nextLine();
+			if (path == "")
 				path = default_path;
+			else {
+				File f = new File(path).getAbsoluteFile();
+				if (!f.exists() || f.isDirectory()) {
+					System.out.println("Fichero invalido! Cargando fichero por defecto.");
+					path = default_path;
+				}
 			}
+		} else {
+			path = map.get("Fichero");
 		}
 		Tablero t = new Tablero();
 		boolean read = t.leerFichero(path);
 		if (read) {
-			System.out.println("\nAlgoritmo:");
 			boolean valid = false;
 			while (!valid) {
-				System.out.println("\t1)\tEscalada simple");
-				System.out.println("\t2)\tMaxima pendiente");
-				System.out.println("\t3)\tEscalada simple estocástico");
 				int selection;
-				try {
-					selection = Integer.parseInt(sc.nextLine());
-				} catch (NumberFormatException e) {
-					// Si hay un error al leer la opción introducida establecemos selection a -1
-					// para que salte el error
-					selection = -1;
+				if (!map.containsKey("Algoritmo")) {
+					System.out.println("\nAlgoritmo:");
+					System.out.println("\t1)\tEscalada simple");
+					System.out.println("\t2)\tMaxima pendiente");
+					System.out.println("\t3)\tEscalada simple estocástico");
+					try {
+						selection = Integer.parseInt(sc.nextLine());
+					} catch (NumberFormatException e) {
+						// Si hay un error al leer la opción introducida establecemos selection a -1
+						// para que salte el error
+						selection = -1;
+					}
+				} else {
+					selection = Integer.parseInt(map.get("Algoritmo"));
+					valid = true;
 				}
 
 				time = System.nanoTime();
@@ -59,19 +76,23 @@ public class Start {
 					valid = true;
 					boolean validMejora = false;
 					double mejora = 1.0;
-					while (!validMejora) {
-						System.out.println("Cantidad de mejora:");
-						try {
-							mejora = Double.parseDouble(sc.nextLine());
+					if (!map.containsKey("IndiceEstocastico")) {
+						while (!validMejora) {
+							System.out.println("Cantidad de mejora:");
+							try {
+								mejora = Double.parseDouble(sc.nextLine());
 
-							if (mejora >= 0)
-								validMejora = true;
-							else
-								throw new Exception();
-						} catch (Exception e) {
-							System.out.println(
-									"Seleccion invalida! La cantidad de mejora debe ser un número entero positivo:");
+								if (mejora >= 0)
+									validMejora = true;
+								else
+									throw new Exception();
+							} catch (Exception e) {
+								System.out.println(
+										"Seleccion invalida! La cantidad de mejora debe ser un número entero positivo:");
+							}
 						}
+					} else {
+						mejora = Double.parseDouble(map.get("IndiceEstocastico"));
 					}
 					time = System.nanoTime();
 					EscaladaSimpleEstocastico.launch(t, mejora);
@@ -82,12 +103,13 @@ public class Start {
 					break;
 				}
 				time = System.nanoTime() - time;
-				System.out.println("\nTiempo del proceso: " + time + "ns ("+ time/1000000l + "ms)");
-				
+				System.out.println("\nTiempo del proceso: " + time + "ns (" + time / 1000000.0 + "ms)");
+
 			}
 		} else {
 			System.out.println("No se pudo cargar el fichero! Finalizando...");
 		}
+		sc.close();
 	}
 
 }

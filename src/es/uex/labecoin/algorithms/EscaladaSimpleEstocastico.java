@@ -12,10 +12,10 @@ public class EscaladaSimpleEstocastico {
 
 	public static void launch(Tablero t, double mejora) {
 		System.out.println("Labecoin: Escalada simple estocastico");
-
+		System.out.println("Indice de mejora: " + mejora + "\n");
 		boolean success = escaladaSimpleEstocastico(t, mejora);
 		System.out.println();
-		Utils.printCamino(camino, success,t);
+		Utils.printCamino(camino, success, t);
 	}
 
 	public static boolean escaladaSimpleEstocastico(Tablero t, double mejora) {
