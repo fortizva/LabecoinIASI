@@ -55,6 +55,7 @@ public class Utils {
 
 	public static void printCamino(ArrayList<Movimiento> camino, boolean success, Tablero t) {
 		System.out.print("Camino: ");
+		System.out.println(camino.size());
 		for (Movimiento mov : camino) {
 			System.out.print(mov + ", ");
 		}
@@ -63,6 +64,9 @@ public class Utils {
 		if (!success)
 			System.out.print("no ");
 		System.out.println("ha encontrado una solucion.");
+		if (t.maxMovimientos == 0) {
+			System.out.println("Se ha alcanzado el numero máximo de movimientos");
+		}
 	}
 
 	// Extractor de argumentos de la terminal (Para enviar parámetros desde consola)
@@ -110,7 +114,28 @@ public class Utils {
 						}
 					}
 					break;
-
+				case "-w": // Ancho de tablero
+					if ((i + 1) < args.length) {
+						try {
+							int w = Integer.parseInt(args[i+1]);
+						if(w> 0)
+							map.put("Width", args[i+1]);
+						} catch(NumberFormatException e) {
+							System.out.println("Ancho de tablero inválido! El ancho debe ser un entero positivo");
+						}
+					}
+					break;
+				case "-h": // Alto de tablero
+					if ((i + 1) < args.length) {
+						try {
+							int w = Integer.parseInt(args[i+1]);
+						if(w> 0)
+							map.put("Height", args[i+1]);
+						} catch(NumberFormatException e) {
+							System.out.println("Ancho de tablero inválido! El ancho debe ser un entero positivo");
+						}
+					}
+					break;
 				}
 			}
 		}

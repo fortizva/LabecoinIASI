@@ -14,9 +14,9 @@ public class Tablero {
 	 * Empleamos dos variables para el tamaño del tablero para poder cargar mapas no
 	 * cuadrados como extensión del proyecto.
 	 */
-	public final int MAX_WIDTH = 10;
-	public final int MAX_HEIGHT = 10;
-	public int price, wallet,nodos = 0;
+	public int MAX_WIDTH = 10;
+	public int MAX_HEIGHT = 10;
+	public int price, wallet ,nodos, maxMovimientos = -1;
 	public Coordenada robot, salida;
 	private int[][] tablero;
 	public HashMap<Coordenada, Integer> monedas;
@@ -155,6 +155,25 @@ public class Tablero {
 				&& comprobacion.getX() < MAX_WIDTH)
 			return (tablero[comprobacion.getY()][comprobacion.getX()] != Constantes.MURO);
 		return false;
+	}
+	
+	public void setMovimientos(int movimientos) {
+		if(movimientos >= -1)
+			maxMovimientos = movimientos;
+	}
+	
+	public int getMovimientos() {
+		return maxMovimientos;
+	}
+
+	public void setMaxWidth(int width) {
+		if(width > 0)
+			MAX_WIDTH = width;
+	}
+	
+	public void setMaxHeight(int height) {
+		if(height > 0)
+			MAX_HEIGHT = height;
 	}
 
 }

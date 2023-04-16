@@ -27,7 +27,7 @@ public class Start {
 		if (!map.containsKey("Fichero")) {
 			System.out.println("Fichero del tablero: [" + default_path + "]");
 			path = sc.nextLine();
-			if (path == "")
+			if (path.isEmpty())
 				path = default_path;
 			else {
 				File f = new File(path).getAbsoluteFile();
@@ -40,8 +40,39 @@ public class Start {
 			path = map.get("Fichero");
 		}
 		Tablero t = new Tablero();
+		
+		// Cambiar el ancho/alto del tablero
+		if(map.containsKey("Width"))
+			t.setMaxWidth(Integer.parseInt(map.get("Width")));
+		if(map.containsKey("Height"))
+			t.setMaxHeight(Integer.parseInt(map.get("Height")));
+		
 		boolean read = t.leerFichero(path);
 		if (read) {
+			int maxMovs = -1;
+			String str;
+			while (maxMovs < 0) {
+				System.out.println("Seleccione el numero máximo de movimientos [Sin límite: 0]");
+				str = sc.nextLine();
+				if (str.isEmpty())
+					maxMovs = 0;
+				else {
+					try {
+						maxMovs = Integer.parseInt(str);
+					} catch (NumberFormatException e) {
+						// Si hay un error al leer la opción introducida establecemos selection a -1
+						// para que salte el error
+						maxMovs = -1;
+					}
+
+					if (maxMovs < 0) {
+						System.out.println("Número inválido, el número máximo debe tener un valor entero positivo!");
+					}
+				}
+			}
+			maxMovs = (maxMovs == 0) ? -1 : maxMovs; // Cambiamos el valor 0 a -1 para definir un número ilimitado de movimientos
+			t.setMovimientos(maxMovs);
+			
 			boolean valid = false;
 			while (!valid) {
 				int selection;

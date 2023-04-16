@@ -30,7 +30,7 @@ public class EscaladaSimple {
 		System.out.println("Primer objetivo = " + objetivo);
 		// Obtenemos las h' disponibles y escogemos la mejor
 		Coordenada c, tmp;
-		while (!end) {
+		while (!end && t.maxMovimientos!=0) { // Usamos maxMovimientos!=0 para poder usar -1 para movimientos sin límite
 			end = true;
 			c = t.robot;
 			found = false;
@@ -43,6 +43,7 @@ public class EscaladaSimple {
 						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;
 					mov = currentMov;
+					t.maxMovimientos--;
 					end = false;
 					found = true;
 				}
