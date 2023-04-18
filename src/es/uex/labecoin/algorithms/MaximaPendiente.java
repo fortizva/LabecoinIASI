@@ -19,7 +19,6 @@ public class MaximaPendiente {
 	}
 
 	public static boolean maximaPendiente(Tablero t) {
-		System.out.println("USANDO MAXIMO: " + t.maxMovimientos);
 		boolean success = false, end = false;
 		Tablero.Movimiento mov = Tablero.Movimiento.B;
 		Coordenada objetivo = new Coordenada(-1, -1);
@@ -42,7 +41,6 @@ public class MaximaPendiente {
 					if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
 							&& t.comprobarMovimiento(currentMov)) {
 						c = tmp;
-						System.out.println("Movimientos--: " + t.maxMovimientos);
 						mov = currentMov;
 						end = false;
 					}
