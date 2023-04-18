@@ -37,12 +37,12 @@ public class MaximaPendiente {
 				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
 						&& t.comprobarMovimiento(currentMov)) {
 					c = tmp;
+					t.maxMovimientos--;
 					mov = currentMov;
 					end = false;
 				}
 			}
 			if (!end) {
-				t.maxMovimientos--;
 				// Mover robot
 				t.moverRobot(mov);
 				camino.add(mov);
