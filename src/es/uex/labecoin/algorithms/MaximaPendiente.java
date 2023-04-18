@@ -15,10 +15,11 @@ public class MaximaPendiente {
 		System.out.println("Labecoin: Maxima pendiente\n");
 		boolean success = maximaPendiente(t);
 		System.out.println();
-		Utils.printCamino(camino, success,t);
+		Utils.printCamino(camino, success, t);
 	}
 
 	public static boolean maximaPendiente(Tablero t) {
+		System.out.println("USANDO MAXIMO: " + t.maxMovimientos);
 		boolean success = false, end = false;
 		Tablero.Movimiento mov = Tablero.Movimiento.B;
 		Coordenada objetivo = new Coordenada(-1, -1);
@@ -28,20 +29,26 @@ public class MaximaPendiente {
 		System.out.println("Primer objetivo = " + objetivo);
 		// Obtenemos las h' disponibles y escogemos la mejor
 		Coordenada c, tmp;
-		while (!end && t.maxMovimientos!=0) { // Usamos maxMovimientos!=0 para poder usar -1 para movimientos sin límite
+		while (!end && t.maxMovimientos != 0) { // Usamos maxMovimientos!=0 para poder usar -1 para movimientos sin
+												// límite
 			end = true;
 			c = t.robot;
 			for (Tablero.Movimiento currentMov : Tablero.Movimiento.values()) {
-				tmp = Utils.calcularCoordenada(t.robot, currentMov);
-				t.nodos++;
-				if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
-						&& t.comprobarMovimiento(currentMov)) {
-					c = tmp;
-					t.maxMovimientos--;
-					mov = currentMov;
-					end = false;
+				if (t.maxMovimientos == 0)
+					break;
+				else {
+					tmp = Utils.calcularCoordenada(t.robot, currentMov);
+					t.nodos++;
+					if (Utils.getDistancia(tmp, objetivo) < Utils.getDistancia(c, objetivo)
+							&& t.comprobarMovimiento(currentMov)) {
+						c = tmp;
+						System.out.println("Movimientos--: " + t.maxMovimientos);
+						mov = currentMov;
+						end = false;
+					}
 				}
 			}
+			t.maxMovimientos--;
 			if (!end) {
 				// Mover robot
 				t.moverRobot(mov);
